@@ -4,15 +4,14 @@
 ### AnyKernel setup
 # global properties
 properties() { '
-kernel.string=Atom-X-Kernel
+kernel.string=JmbtX-Kernel Icikiwir
 do.devicecheck=1
 do.modules=1
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=lisa
-device.name2=redwood
-device.name3=redwoodin
+device.name1=redwood
+device.name2=redwoodin
 supported.versions=11.0-14.0
 supported.patchlevels=
 supported.vendorpatchlevels=
@@ -28,9 +27,9 @@ set_perm_recursive 0 0 750 750 $RAMDISK/init* $RAMDISK/sbin;
 # begin passthrough patch
 passthrough() {
 if [ ! "$(getprop persist.sys.fuse.passthrough.enable)" ]; then
-	ui_print "Remounting /system as rw..."
-	$home/tools/busybox mount -o rw,remount /system
-	ui_print "Patching system's build prop for FUSE Passthrough..."
+	ui_print "Enabling fuse passthrough..."
+
+	# FUSE Passthrough
 	patch_prop /system/build.prop "persist.sys.fuse.passthrough.enable" "true"
 fi
 } # end passthrough patch
